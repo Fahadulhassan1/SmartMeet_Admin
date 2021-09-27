@@ -85,7 +85,9 @@ export default function UsersCard() {
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:3001/api/employee/allUser_Without_Acctivation")
+      .get(
+        "https://pure-woodland-42301.herokuapp.com/api/employee/allUser_Without_Acctivation"
+      )
       .then((response) => {
         console.log(response);
         setdata(response.data);
@@ -177,14 +179,20 @@ function RowBody({ avatar, name, email, setdata }) {
 
   const accept = () => {
     axios
-      .put("http://localhost:3001/api/employee/accept_employee/" + email)
+      .put(
+        "https://pure-woodland-42301.herokuapp.com/api/employee/accept_employee/" +
+          email
+      )
       .then((res) => {
         setdata(null);
       });
   };
   const reject = () => {
     axios
-      .put("http://localhost:3001/api/employee/reject_employee/" + email)
+      .put(
+        "https://pure-woodland-42301.herokuapp.com/api/employee/reject_employee/" +
+          email
+      )
       .then((res) => {
         setdata(null);
       });
