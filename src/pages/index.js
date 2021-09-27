@@ -8,6 +8,7 @@ import Graph from "../components/Home/Graph";
 import CircularGraph from "../components/Home/CircularGraph";
 // import InOutExpected from "../components/LowerCards"
 import LowerCards from "../components/LowerCards";
+import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
 function HomePage() {
   return (
     <Grid container>
@@ -31,11 +32,13 @@ function HomePage() {
             <CircularGraph />
           </Grid>
         </Grid>
+
         <div style={{ marginTop: "20px" }}>
           <LowerCards />
         </div>
       </Grid>
     </Grid>
+    // {/* <UsersCard /> */}
   );
 }
 export default HomePage;

@@ -107,6 +107,7 @@ export default function ColumnGroupingTable(props) {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        
       />
     </Paper>
   );
