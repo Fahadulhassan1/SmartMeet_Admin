@@ -11,7 +11,7 @@ import Watchlist from "./pages/watchlist"
 function App() {
   return (
     <div className="App">
-      <Watchlist />
+      <HomePage />
     </div>
   );
 }
