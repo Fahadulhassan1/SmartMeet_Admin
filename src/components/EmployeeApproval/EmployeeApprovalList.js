@@ -1,10 +1,9 @@
-import React from "react";
-
+import * as React from "react";
+import Modal from "@mui/material/Modal";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import image from "../../images/fahad.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
@@ -12,7 +11,7 @@ import DoneSharpIcon from "@mui/icons-material/DoneSharp";
 import ClearSharpIcon from "@mui/icons-material/ClearSharp";
 import axios from "axios";
 
-import View from "./View"
+
 const useStyles = makeStyles((theme) => ({
   upperCard: {
     padding: 10,
@@ -97,7 +96,7 @@ export default function UsersCard() {
   }, [data]);
 
   return (
-    <Grid container>
+    <Grid container >
       <Grid item xs={10} style={{ margin: "auto" }}>
         <Card className={classes.bottomCard}>
           <Grid container className={classes.rowheader} sx={{ m: "auto" }}>
@@ -152,6 +151,8 @@ export default function UsersCard() {
                       name={item.firstName + " " + item.lastName}
                       avatar={item.avatar}
                       email={item.email}
+                      phoneNumber={item.phoneNumber}
+                      username = {item.username}
                       setdata={setdata}
                     />
                     <Divider />
@@ -168,8 +169,21 @@ export default function UsersCard() {
   );
 }
 
-function RowBody({ avatar, name, email, setdata }) {
-  const {getView , setView } = React.useState(false)
+function RowBody({ avatar, name, email, phoneNumber ,username,setdata }) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
   const classes = useStyles();
   const action = (data) => {
     axios
@@ -201,36 +215,66 @@ function RowBody({ avatar, name, email, setdata }) {
       });
   };
   const view = () => {
-    
-      alert("Hello!");
-  }
+    alert("Hello!");
+  };
   return (
     <Grid container className={classes.rowbody} style={{ margin: "auto" }}>
       <Grid item sm={2} xs={2} md={4} lg={1} style={{ marginBottom: "10px" }}>
         <Avatar alt="Remy Sharp" src={avatar} />
       </Grid>
-      <Grid item sm={6} xs={6} md={4} lg={2}>
+      <Grid item sm={6} xs={6} md={4} lg={3}>
         <Typography variant="body1" className={classes.bottomcardtypography}>
           {name}
         </Typography>
       </Grid>
-      <Grid item sm={10} xs={10} md={4} lg={4}>
+      <Grid item sm={10} xs={10} md={4} lg={3}>
         <Typography variant="body1" className={classes.bottomcardtypography}>
           {email}
         </Typography>
       </Grid>
       <Grid item sm={3} xs={3} md={4} lg={2}>
-        <Button className={classes.viewbtn}
-        onClick={view}
-        >
-          <Typography
-            variant="body1"
-            className={classes.bottomcardtypography}
-            style={{ color: "white" }}
-          >
-            View
-          </Typography>
+        <Button className={classes.viewbtn} onClick={handleOpen}>
+          <Typography style={{ color: "white" }}>View</Typography>
         </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Grid container sx={style}>
+            <Grid container>
+              <Grid item xs={4}>
+                <Avatar
+                  sx={{ width: 100, height: 100, mb: "20px" }}
+                  alt="Remy Sharp"
+                  src={avatar}
+                />
+              </Grid>
+              <Grid item xs={8}>
+                <Typography variant="h5">{name}</Typography>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sx={{ m: "5px" }}>
+              <Typography variant="body1">User Name: {username}</Typography>
+            </Grid>
+
+            <Grid item xs={12} sx={{ m: "5px" }}>
+              <Typography variant="body">Email: {email}</Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ m: "5px" }}>
+              <Typography variant="body">
+                Phone Number: {phoneNumber}
+              </Typography>
+            </Grid>
+            <Grid item sx={{ m: "5px" }}>
+              <Typography variant="body">
+                Office Address: XYZ Address
+              </Typography>
+            </Grid>
+          </Grid>
+          
+        </Modal>
       </Grid>
       <Grid item sm={8} xs={8} md={4} lg={3}>
         <Grid container>
