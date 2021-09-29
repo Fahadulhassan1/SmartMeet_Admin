@@ -11,8 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import DoneSharpIcon from "@mui/icons-material/DoneSharp";
 import ClearSharpIcon from "@mui/icons-material/ClearSharp";
 import axios from "axios";
-
-import View from "./View"
 const useStyles = makeStyles((theme) => ({
   upperCard: {
     padding: 10,
@@ -55,20 +53,20 @@ const useStyles = makeStyles((theme) => ({
   btncontainer: {
     color: "#fff",
   },
-  btmbtngreen: {
+  btmbtnorange: {
     color: "#fff",
-    background: "#2fc452",
+    background: "orange",
     fontWeight: "bold",
-    borderRadius: "10px 0px 0px 10px",
+    borderRadius: "0px 10px 10px 0px",
     "&:hover": {
-      background: "#6DD585",
+      background: "#fed8b1",
     },
   },
   btmbtnred: {
     color: "#fff",
     background: "#e85e5e",
     fontWeight: "bold",
-    borderRadius: " 0px 10px 10px 0px",
+    borderRadius: " 10px 0px 0px 10px",
     "&:hover": {
       background: "#ee8b8b",
     },
@@ -87,9 +85,7 @@ export default function UsersCard() {
 
   React.useEffect(() => {
     axios
-      .get(
-        "https://pure-woodland-42301.herokuapp.com/api/employee/allUser_Without_Acctivation"
-      )
+      .get("https://pure-woodland-42301.herokuapp.com/api/visitor/allUsers")
       .then((response) => {
         console.log(response);
         setdata(response.data);
@@ -98,7 +94,7 @@ export default function UsersCard() {
 
   return (
     <Grid container>
-      <Grid item xs={10} style={{ margin: "auto" }}>
+      <Grid item xs={11} style={{ margin: "auto" }}>
         <Card className={classes.bottomCard}>
           <Grid container className={classes.rowheader} sx={{ m: "auto" }}>
             <Grid item sm={2} xs={3} md={4} lg={1}>
@@ -109,16 +105,23 @@ export default function UsersCard() {
                 Avatar
               </Typography>
             </Grid>
-            <Grid item sm={4} xs={6} md={6} lg={3}>
+            <Grid item sm={4} xs={6} md={6} lg={2} style={{ margin: "auto" }}>
               <Typography
                 variant="body1"
                 className={classes.bottomcardtypography}
               >
-                Employee Name
+                Visitor Name
               </Typography>
             </Grid>
-
-            <Grid item sm={12} xs={12} md={2} lg={3}>
+            <Grid item sm={4} xs={4} md={5} lg={2} style={{ margin: "auto" }}>
+              <Typography
+                variant="body1"
+                className={classes.bottomcardtypography}
+              >
+                User Name
+              </Typography>
+            </Grid>
+            <Grid item sm={12} xs={12} md={2} lg={3} style={{ margin: "auto" }}>
               <Typography
                 variant="body1"
                 className={classes.bottomcardtypography}
@@ -126,15 +129,16 @@ export default function UsersCard() {
                 Email{""}
               </Typography>
             </Grid>
-            <Grid item sm={4} xs={4} md={5} lg={2}>
+
+            <Grid item sm={2} xs={3} md={2} lg={2} style={{ margin: "auto" }}>
               <Typography
                 variant="body1"
                 className={classes.bottomcardtypography}
               >
-                PROFILE
+                DOB
               </Typography>
             </Grid>
-            <Grid item sm={4} xs={6} md={4} lg={2}>
+            <Grid item sm={2} xs={3} md={2} lg={2} style={{ margin: "auto" }}>
               <Typography
                 variant="body1"
                 className={classes.bottomcardtypography}
@@ -152,6 +156,10 @@ export default function UsersCard() {
                       name={item.firstName + " " + item.lastName}
                       avatar={item.avatar}
                       email={item.email}
+                      username={item.username}
+                      dateOfBirth={item.dateOfBirth}
+                      id={item._id}
+                      isWatched={item.isWatchListed}
                       setdata={setdata}
                     />
                     <Divider />
@@ -168,95 +176,87 @@ export default function UsersCard() {
   );
 }
 
-function RowBody({ avatar, name, email, setdata }) {
-  const {getView , setView } = React.useState(false)
+function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isWatched}) {
   const classes = useStyles();
-  const action = (data) => {
-    axios
-      .post(
-        "https://pure-woodland-42301.herokuapp.com/api/employee/verifyemail/" +
-          email
-      )
-      .then((response) => {});
-  };
 
-  const accept = () => {
+  const deleteEmployee = () => {
     axios
-      .put(
-        "https://pure-woodland-42301.herokuapp.com/api/employee/accept_employee/" +
-          email
+      .delete(
+        "https://pure-woodland-42301.herokuapp.com/api/visitor/deleteAccount/" +
+          id
       )
       .then((res) => {
         setdata(null);
       });
-  };
-  const reject = () => {
-    axios
-      .put(
-        "https://pure-woodland-42301.herokuapp.com/api/employee/reject_employee/" +
-          email
-      )
-      .then((res) => {
-        setdata(null);
-      });
-  };
-  const view = () => {
-    
-      alert("Hello!");
-  }
+    };
+     const addToWatchList = () => {
+       axios
+         .put(
+           "https://pure-woodland-42301.herokuapp.com/api/visitor/addToWatchlist/" +
+             email
+         )
+         .then((res) => {
+           setdata(null);
+         });
+     };
+
   return (
     <Grid container className={classes.rowbody} style={{ margin: "auto" }}>
-      <Grid item sm={2} xs={2} md={4} lg={1} style={{ marginBottom: "10px" }}>
+      <Grid item sm={2} xs={2} md={4} lg={1} style={{ margin: "auto" }}>
         <Avatar alt="Remy Sharp" src={avatar} />
       </Grid>
-      <Grid item sm={6} xs={6} md={4} lg={2}>
+      <Grid item sm={6} xs={6} md={4} lg={2} style={{ margin: "auto" }}>
         <Typography variant="body1" className={classes.bottomcardtypography}>
           {name}
         </Typography>
       </Grid>
-      <Grid item sm={10} xs={10} md={4} lg={4}>
+      <Grid item sm={6} xs={6} md={4} lg={2} style={{ margin: "auto" }}>
+        <Typography variant="body1" className={classes.bottomcardtypography}>
+          {username}
+        </Typography>
+      </Grid>
+      <Grid item sm={10} xs={10} md={4} lg={3} style={{ margin: "auto" }}>
         <Typography variant="body1" className={classes.bottomcardtypography}>
           {email}
         </Typography>
       </Grid>
-      <Grid item sm={3} xs={3} md={4} lg={2}>
-        <Button className={classes.viewbtn}
-        onClick={view}
-        >
-          <Typography
-            variant="body1"
-            className={classes.bottomcardtypography}
-            style={{ color: "white" }}
-          >
-            View
-          </Typography>
-        </Button>
+      <Grid item sm={10} xs={10} md={4} lg={2} style={{ margin: "auto" }}>
+        <Typography variant="body1" className={classes.bottomcardtypography}>
+          {dateOfBirth}
+        </Typography>
       </Grid>
-      <Grid item sm={8} xs={8} md={4} lg={3}>
-        <Grid container>
-          <Grid item xs={4}>
-            <Button
-              variant="container"
-              className={classes.btmbtngreen}
-              fullWidth
-              onClick={accept}
-            >
-              <Typography variant="body1">
-                <DoneSharpIcon />
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={4}>
+      <Grid item sm={8} xs={8} md={4} lg={2}>
+        <Grid container sx={{ gap: 0 }}>
+          <Grid item xs={6}>
             <Button
               variant="container"
               className={classes.btmbtnred}
               fullWidth
-              onClick={reject}
+              onClick={deleteEmployee}
             >
-              <Typography variant="body1">
-                <ClearSharpIcon />
-              </Typography>
+              <Typography variant="body">Delete Account</Typography>
             </Button>
+          </Grid>
+          <Grid item xs={6}>
+            {isWatched ? (
+              <Button
+                variant="container"
+                className={classes.btmbtnorange}
+                fullWidth
+                
+              >
+                <Typography variant="body">Watch Listed</Typography>
+              </Button>
+            ) : (
+              <Button
+                variant="container"
+                className={classes.btmbtnorange}
+                fullWidth
+                onClick={addToWatchList}
+              >
+                <Typography variant="body">Watch List</Typography>
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Grid>

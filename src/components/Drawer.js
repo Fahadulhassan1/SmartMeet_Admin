@@ -22,7 +22,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
+import PersonPinCircleRoundedIcon from "@mui/icons-material/PersonPinCircleRounded";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -136,20 +137,27 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Dashboard", "Appointments", "Analytics", "Watchlist"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index === 0 ? <DashboardIcon /> : ""}
-                  {index === 1 ? <AccountCircleIcon /> : ""}
-                  {index === 2 ? <AnalyticsIcon /> : ""}
-                  {index === 3 ? <WarningIcon /> : ""}
-                </ListItemIcon>
+          {[
+            "Dashboard",
+            "Appointments",
+            "Analytics",
+            "Watchlist",
+            "Employees",
+            "Visitors",
+          ].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index === 0 ? <DashboardIcon /> : ""}
+                {index === 1 ? <AccountCircleIcon /> : ""}
+                {index === 2 ? <AnalyticsIcon /> : ""}
+                {index === 3 ? <WarningIcon /> : ""}
+                {index === 4 ? <PersonSharpIcon /> : ""}
+                {index === 5 ? <PersonPinCircleRoundedIcon /> : ""}
+              </ListItemIcon>
 
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>

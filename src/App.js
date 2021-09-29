@@ -5,12 +5,13 @@ import EmployeeApproval from "./pages/employee_approval";
 import EmployeeDetail from "./pages/employeeDetail"
 import Sign_In from "./pages/signin"
 import Page from "./pages/index (1)"
- 
+import VisitorDetail from "./pages/visitor_detail"
+import Watchlist from "./pages/watchlist"
 
 function App() {
   return (
     <div className="App">
-      <EmployeeDetail />
+      <EmployeeApproval />
     </div>
   );
 }
