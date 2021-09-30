@@ -139,7 +139,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem button key={1} onClick={() => history.push("/home")}>
+          <ListItem button key={1} onClick={() => history.push("/")}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>

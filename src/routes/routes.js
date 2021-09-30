@@ -5,7 +5,7 @@ import {
   Switch,
   Route,
   useHistory,
-  //Redirect,
+  Redirect,
 } from "react-router-dom";
 
 import Home from "../pages/index";
@@ -32,10 +32,8 @@ export default function Routes() {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/signIn">
-          <SignIn />
-        </Route>
-        <Route exact path="/home">
+        
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/employees_approval">
