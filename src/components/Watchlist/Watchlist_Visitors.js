@@ -4,12 +4,12 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import image from "../../images/fahad.jpg";
+//import image from "../../images/fahad.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
-import DoneSharpIcon from "@mui/icons-material/DoneSharp";
-import ClearSharpIcon from "@mui/icons-material/ClearSharp";
+//import DoneSharpIcon from "@mui/icons-material/DoneSharp";
+//import ClearSharpIcon from "@mui/icons-material/ClearSharp";
 import axios from "axios";
 const useStyles = makeStyles((theme) => ({
   upperCard: {

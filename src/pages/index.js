@@ -3,12 +3,12 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import HomeScreen from "../components/HomeScreen";
 import Drawer from "../components/Drawer";
-import VisitCards from "../components/Home/VisitCards";
+//import VisitCards from "../components/Home/VisitCards";
 import Graph from "../components/Home/Graph";
 import CircularGraph from "../components/Home/CircularGraph";
 // import InOutExpected from "../components/LowerCards"
 import LowerCards from "../components/LowerCards";
-import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
+//import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
 function HomePage() {
   return (
     <Grid container>

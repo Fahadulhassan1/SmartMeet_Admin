@@ -1,9 +1,7 @@
 import React from "react";
 
 import Grid from "@mui/material/Grid";
-import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
 import Drawer from "../components/Drawer";
-import Page from "../pages/index (1)";
 import Watchlist from "../components/Watchlist/Watchlist_Visitors"
 function EmployeeApproval() {
   return (
