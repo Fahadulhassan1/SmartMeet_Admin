@@ -9,22 +9,19 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
 const columns = [
-  { id: "name", label: "Name", minWidth: 80},
-  { id: "department", label: "Department", minWidth: 80},
+  { id: "name", label: "Name", minWidth: 80 },
+  { id: "department", label: "Department", minWidth: 80 },
   {
     id: "time",
     label: "Time",
     minWidth: 85,
-    
+
     format: (value) => value.toLocaleString("en-US"),
   },
-  
-  
 ];
 
 function createData(name, department, time) {
-  
-  return { name, department, time};
+  return { name, department, time };
 }
 
 const rows = [
@@ -38,11 +35,11 @@ const rows = [
   createData("Fahad", "Finance", "11:30- 12-30"),
   createData("Fahad", "Finance", "11:30- 12-30"),
   createData("Fahad", "Finance", "11:30- 12-30"),
-  createData("Fahad", "Finance", "11:30-12:30")
+  createData("Fahad", "Finance", "11:30-12:30"),
 ];
 
 export default function ColumnGroupingTable(props) {
-  const {typeOfCheck} = props;
+  const { typeOfCheck, setdata, data } = props;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -107,7 +104,6 @@ export default function ColumnGroupingTable(props) {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-        
       />
     </Paper>
   );

@@ -7,7 +7,8 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 export default function BoxSx(props) {
-  const { icon, checkedIn_Visitors, numberOfVisitors  , color} = props;
+  const { icon, checkedIn_Visitors, numberOfVisitors, color } = props;
+  
  
   return (
     <>
