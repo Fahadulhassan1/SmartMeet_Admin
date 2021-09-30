@@ -157,13 +157,7 @@ export default function MiniDrawer() {
 
             <ListItemText primary={"Employeee Approval"} />
           </ListItem>
-          <ListItem button key={1} onClick={() => history.push("/analytics")}>
-            <ListItemIcon>
-              <AnalyticsIcon />
-            </ListItemIcon>
-
-            <ListItemText primary={"Analytics"} />
-          </ListItem>
+         
           <ListItem button key={1} onClick={() => history.push("/watchlist")}>
             <ListItemIcon>
               <WarningIcon />
