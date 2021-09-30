@@ -24,6 +24,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import PersonPinCircleRoundedIcon from "@mui/icons-material/PersonPinCircleRounded";
+import { useHistory } from "react-router-dom";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -92,6 +93,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
+  const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -137,27 +139,60 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {[
-            "Dashboard",
-            "Appointments",
-            "Analytics",
-            "Watchlist",
-            "Employees",
-            "Visitors",
-          ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index === 0 ? <DashboardIcon /> : ""}
-                {index === 1 ? <AccountCircleIcon /> : ""}
-                {index === 2 ? <AnalyticsIcon /> : ""}
-                {index === 3 ? <WarningIcon /> : ""}
-                {index === 4 ? <PersonSharpIcon /> : ""}
-                {index === 5 ? <PersonPinCircleRoundedIcon /> : ""}
-              </ListItemIcon>
+          <ListItem button key={1} onClick={() => history.push("/home")}>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
 
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+            <ListItemText primary={"Dashboard"} />
+          </ListItem>
+          <ListItem
+            button
+            key={1}
+            onClick={() => history.push("/employees_approval")}
+          >
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"Employeee Approval"} />
+          </ListItem>
+          <ListItem button key={1} onClick={() => history.push("/analytics")}>
+            <ListItemIcon>
+              <AnalyticsIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"Analytics"} />
+          </ListItem>
+          <ListItem button key={1} onClick={() => history.push("/watchlist")}>
+            <ListItemIcon>
+              <WarningIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"Watchlist"} />
+          </ListItem>
+          <ListItem
+            button
+            key={1}
+            onClick={() => history.push("/employee_detail")}
+          >
+            <ListItemIcon>
+              <PersonPinCircleRoundedIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"Employees"} />
+          </ListItem>
+          <ListItem
+            button
+            key={1}
+            onClick={() => history.push("/visitors_detail")}
+          >
+            <ListItemIcon>
+              <PersonSharpIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"Visitors"} />
+          </ListItem>
         </List>
         <Divider />
         <List>

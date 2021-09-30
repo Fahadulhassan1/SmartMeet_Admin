@@ -7,11 +7,12 @@ import Sign_In from "./pages/signin"
 import Page from "./pages/index (1)"
 import VisitorDetail from "./pages/visitor_detail"
 import Watchlist from "./pages/watchlist"
+import Routes from "./routes/routes"
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <Routes />
     </div>
   );
 }

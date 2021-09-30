@@ -97,6 +97,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Sign In
             </Button>
@@ -106,7 +107,6 @@ export default function SignIn() {
                   Forgot password?
                 </Link>
               </Grid>
-              
             </Grid>
           </Box>
         </Box>
