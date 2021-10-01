@@ -86,7 +86,7 @@ export default function UsersCard() {
     axios
       .get("https://pure-woodland-42301.herokuapp.com/api/employee/allUsers")
       .then((response) => {
-        console.log(response);
+       // console.log(response);
         setdata(response.data);
       });
   }, [data]);

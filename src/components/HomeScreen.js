@@ -16,10 +16,10 @@ function HomeScreen() {
   React.useEffect(() => {
     axios
       .get(
-        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
+        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointmentscounting"
       )
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         setSceduledvisitors(response.data);
       });
   }, [scheduledVisitorsdata]);

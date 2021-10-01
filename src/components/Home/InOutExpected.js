@@ -43,6 +43,8 @@ export default function ColumnGroupingTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  console.log("Test" + data);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -76,7 +78,6 @@ export default function ColumnGroupingTable(props) {
           </TableHead>
           <TableBody>
             {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
@@ -108,3 +109,24 @@ export default function ColumnGroupingTable(props) {
     </Paper>
   );
 }
+// {
+//   data ? (
+//     data.map((item) => {
+//       console.log(item.Timeslot);
+//       return (
+//         <div>
+//           <TableCell
+//             key={item.Timeslot}
+//             align={item.align}
+//             style={{ top: 57, minWidth: 80 }}
+//           >
+//             {item.Timeslot}
+//           </TableCell>
+//           ;
+//         </div>
+//       );
+//     })
+//   ) : (
+//     <div></div>
+//   );
+// }

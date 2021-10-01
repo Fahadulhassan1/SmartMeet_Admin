@@ -9,11 +9,11 @@ import {
 } from "react-router-dom";
 
 import Home from "../pages/index";
-import EmployeeApproval from "../pages/employee_approval"
+import EmployeeApproval from "../pages/employee_approval";
 import VisitorDetail from "../pages/visitor_detail";
 import WatchList from "../pages/watchlist";
 import EmployeeDetail from "../pages/employeeDetail";
-import SignIn from "../pages/signin"
+import SignIn from "../pages/signin";
 // import Logs from "../pages/logspage";
 // import TP from "../pages/templatepage";
 // import UF from "../pages/uploadfilepage";
@@ -24,32 +24,39 @@ import SignIn from "../pages/signin"
 // import FP from "../pages/forgotpassword";
 // import SettingUser from "../pages/settinguserpage";
 
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Routes() {
   const history = useHistory();
+  const login = useSelector((state) => state.states.islogin);
   //const isLogin = useSelector();
   return (
     <Router history={history}>
-      <Switch>
-        
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/employees_approval">
-          <EmployeeApproval />
-        </Route>
-        <Route exact path="/visitors_detail">
-          <VisitorDetail />
-        </Route>
-        <Route exact path="/watchlist">
-          <WatchList />
-        </Route>
-
-        <Route exact path="/employee_detail">
-          <EmployeeDetail />
-        </Route>
-      </Switch>
+      {login ? (
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/employees_approval">
+            <EmployeeApproval />
+          </Route>
+          <Route exact path="/visitors_detail">
+            <VisitorDetail />
+          </Route>
+          <Route exact path="/watchlist">
+            <WatchList />
+          </Route>
+          <Route exact path="/employee_detail">
+            <EmployeeDetail />
+          </Route>
+        </Switch>
+      ) : (
+        <Switch>
+          <Route path="/">
+            <SignIn />
+          </Route>
+        </Switch>
+      )}
     </Router>
   );
 }

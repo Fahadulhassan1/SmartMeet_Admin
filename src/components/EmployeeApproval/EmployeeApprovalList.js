@@ -90,7 +90,7 @@ export default function UsersCard() {
         "https://pure-woodland-42301.herokuapp.com/api/employee/allUser_Without_Acctivation"
       )
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         setdata(response.data);
       });
   }, [data]);
