@@ -8,6 +8,9 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 
 import axios from "axios";
 const useStyles = makeStyles((theme) => ({
@@ -201,6 +204,7 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isW
 
   return (
     <Grid container className={classes.rowbody} style={{ margin: "auto" }}>
+      
       <Grid item sm={2} xs={2} md={4} lg={1} style={{ margin: "auto" }}>
         <Avatar alt="Remy Sharp" src={avatar} />
       </Grid>
@@ -242,7 +246,6 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isW
                 variant="container"
                 className={classes.btmbtnorange}
                 fullWidth
-                
               >
                 <Typography variant="body">Watch Listed</Typography>
               </Button>

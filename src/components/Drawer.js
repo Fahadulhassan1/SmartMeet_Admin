@@ -24,6 +24,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import PersonPinCircleRoundedIcon from "@mui/icons-material/PersonPinCircleRounded";
+import { useDispatch } from "react-redux";
+import { logout } from "../pages/statesSlice";
 import { useHistory } from "react-router-dom";
 const drawerWidth = 240;
 
@@ -96,6 +98,7 @@ export default function MiniDrawer() {
   const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -157,7 +160,7 @@ export default function MiniDrawer() {
 
             <ListItemText primary={"Employeee Approval"} />
           </ListItem>
-         
+
           <ListItem button key={1} onClick={() => history.push("/watchlist")}>
             <ListItemIcon>
               <WarningIcon />
@@ -190,16 +193,25 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-          {["Reports", "Settings", "Logout"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index === 0 ? <AssessmentIcon /> : ""}
-                {index === 1 ? <SettingsIcon /> : ""}
-                {index === 2 ? <LogoutIcon /> : ""}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button key={1} onClick={() => history.push("/Reports")}>
+            <ListItemIcon>
+              <AssessmentIcon />
+            </ListItemIcon>
+
+            <ListItemText primary={"History"} />
+          </ListItem>
+          <ListItem button key={1} onClick={() => history.push("/Settings")}>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Settings"} />
+          </ListItem>
+          <ListItem button key={1} onClick={() => dispatch(logout())}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Logout"} />
+          </ListItem>
         </List>
       </Drawer>
     </Grid>

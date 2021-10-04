@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { login } from "../../pages/statesSlice";
+import axios from "axios";
 function Copyright(props) {
   return (
     <Typography
@@ -36,15 +37,27 @@ const theme = createTheme();
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
-    dispatch(login());
+  const [state, setState] = React.useState({
+    email: "",
+    password: "",
+  });
+  const handleSubmit = () => {
+    //eslint-disable-next-line no-console
+    const data = new FormData();
+    data.append("email", state.email);
+    data.append("password", state.password);
+
+    axios
+      .post("http://localhost:3001/api/admin/signIn", state)
+      .then((response) => {
+        console.log(response);
+
+        if (response.data.success) {
+          dispatch(login());
+        } else {
+          alert("Login failed");
+        }
+      });
   };
 
   return (
@@ -80,6 +93,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={state.email}
+              onChange={(e) => setState({ ...state, email: e.target.value })}
             />
             <TextField
               margin="normal"
@@ -90,13 +105,14 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={state.password}
+              onChange={(e) => setState({ ...state, password: e.target.value })}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
