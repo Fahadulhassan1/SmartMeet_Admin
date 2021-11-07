@@ -43,7 +43,23 @@ export default function ColumnGroupingTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  console.log("Test" + data);
+
+
+  var row = [];
+  if (data == null || data == undefined) {
+    row = rows;
+  } else {
+    data.map((element) => {
+      row.push(
+        createData(
+          element.VisitorId.firstName,
+          element.VisitorId.email,
+          element.Timeslot
+        )
+      );
+    });
+  }
+  
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -77,23 +93,22 @@ export default function ColumnGroupingTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {row.map((row) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === "number"
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

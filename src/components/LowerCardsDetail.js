@@ -1,5 +1,5 @@
 import * as React from "react";
-import InOutExpected from "./Home/InOutExpected";
+import InOutExpected from "./Home/expectedAppointments";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import Typography from "@mui/material/Typography";

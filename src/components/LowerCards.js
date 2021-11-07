@@ -1,18 +1,46 @@
 import * as React from "react";
-import InOutExpected from "./Home/InOutExpected";
+import InOutExpected from "./Home/expectedAppointments";
+import RecentCheckedIn from "./Home/recentlyCheckedIn";
+import RecentCheckedOut from "./Home/RecentlyCheckedOut";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 function LowerCards() {
   const [data, setdata] = React.useState(null);
-
-  React.useEffect(() => {
+  const [recentCheckedIn, setRecentCheckIn] = React.useState(null);
+   const [recentCheckedOut, setRecentCheckOut] = React.useState(null);
+   React.useEffect( () => {
     axios
-      .get("http://localhost:3001/api/admin/nextDayAppointments")
+      .get(
+        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
+      )
       .then((response) => {
-       
         setdata(response.data);
       });
-  }, []);
+   }, [data]);
+  React.useEffect(() => {
+    axios
+      .get(
+        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
+      )
+      .then((response) => {
+        setRecentCheckIn(response.data);
+      });
+  }, [recentCheckedIn]);
+  React.useEffect(() => {
+    axios
+      .get(
+        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
+      )
+      .then((response) => {
+        setRecentCheckOut(response.data);
+      });
+  }, [recentCheckedOut]);
+
+
+  
+  
+
+
  
 
   
@@ -21,15 +49,19 @@ function LowerCards() {
     <>
       <Grid container sx={{ gap: 5 }}>
         <Grid item xs={8} md={5} lg={3.5} style={{ margin: "auto" }}>
-          <InOutExpected typeOfCheck="Recently Checked In" />
-        </Grid>
-        <Grid xs={8} md={5} lg={3.5} style={{ margin: "auto" }}>
-          <InOutExpected typeOfCheck="Recently Checked Out" />
-        </Grid>
-        <Grid xs={8} md={5} lg={3.5} style={{ margin: "auto" }}>
-          <InOutExpected
-            typeOfCheck="Expected Checked In"
+          <RecentCheckedIn
+            typeOfCheck="Recently Checked In"
+            recentCheckedIn={recentCheckedIn}
           />
+        </Grid>
+        <Grid xs={8} md={5} lg={3.5} style={{ margin: "auto" }}>
+          <RecentCheckedOut
+            typeOfCheck="Recently Checked Out"
+            recentCheckedOut={recentCheckedOut}
+          />
+        </Grid>
+        <Grid xs={8} md={5} lg={3.5} style={{ margin: "auto" }}>
+          <InOutExpected typeOfCheck="Expected Checked In" data={data} />
         </Grid>
       </Grid>
     </>
