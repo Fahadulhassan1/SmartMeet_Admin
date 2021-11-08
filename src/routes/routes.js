@@ -15,6 +15,7 @@ import WatchList from "../pages/watchlist";
 import EmployeeDetail from "../pages/employeeDetail";
 import SignIn from "../pages/signin";
 import EmailForChangePassword from "../components/UserCredentials/emailforChangePassword";
+import NewEmailPass from "../components/UserCredentials/NewEmailPass";
 // import Logs from "../pages/logspage";
 // import TP from "../pages/templatepage";
 // import UF from "../pages/uploadfilepage";
@@ -55,10 +56,13 @@ export default function Routes() {
         <Switch>
           <Route exact path="/">
             <SignIn />
-            </Route>
-            <Route exact path = "/changePassword">
-              <EmailForChangePassword />
-            </Route>
+          </Route>
+          <Route exact path="/changePassword">
+            <EmailForChangePassword />
+          </Route>
+          <Route exact path="/api/admin/addnewPassword/:token">
+            <NewEmailPass />
+          </Route>
         </Switch>
       )}
     </Router>

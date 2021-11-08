@@ -9,6 +9,9 @@ import Watchlist from "./pages/watchlist";
 import Routes from "./routes/routes";
 import Search from "./components/searchBar/SearchBar"
 import EmailForChangePassword from "./components/UserCredentials/emailforChangePassword";
+import NewEmailPass from "./components/UserCredentials/NewEmailPass";
+
+import Chat from "./components/UserCredentials/chat"
 
 function App() {
   return (

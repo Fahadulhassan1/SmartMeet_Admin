@@ -40,18 +40,24 @@ export default function EmailForChangePassword() {
         if (res.data.message == "email has been sent to your given email") {
           alert("Email sent successfully");
           //redirect to the new page
+          setIsLoading(false);
           window.location.href = "/";
+          dispatch(login(res.data));
         } else {
           alert(res.data.message);
+          
+          setIsLoading(false);
           window.location.reload();
+          dispatch(login(res.data));
         }
-        setIsLoading(false);
-        dispatch(login(res.data));
+        
+        
       })
       .catch((err) => {
         alert(err.data.error);
         setIsLoading(false);
         setError(err.response.data.message);
+         console.label(err.data.error);
       });
   };
 
