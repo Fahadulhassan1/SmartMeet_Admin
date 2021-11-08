@@ -30,24 +30,26 @@ export default function EmailForChangePassword() {
   const handleSubmit = () => {
     setIsLoading(true);
     axios
-      .post("http://localhost:3001/api/admin/forgetPassword", {
-        email: email,
-      })
-        .then((res) => {
-            if (res.data.message == "email has been sent to your given email") {
-                alert("Email sent successfully")
-                //redirect to the new page
-                window.location.href = "/";
-            }
-            else {
-                alert(res.data.message)
-                window.location.reload()
-            }
-            setIsLoading(false);
+      .post(
+        "https://pure-woodland-42301.herokuapp.com/api/admin/forgetPassword",
+        {
+          email: email,
+        }
+      )
+      .then((res) => {
+        if (res.data.message == "email has been sent to your given email") {
+          alert("Email sent successfully");
+          //redirect to the new page
+          window.location.href = "/";
+        } else {
+          alert(res.data.message);
+          window.location.reload();
+        }
+        setIsLoading(false);
         dispatch(login(res.data));
       })
-        .catch((err) => {
-         alert(err.data.error);
+      .catch((err) => {
+        alert(err.data.error);
         setIsLoading(false);
         setError(err.response.data.message);
       });
