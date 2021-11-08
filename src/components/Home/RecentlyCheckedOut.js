@@ -54,7 +54,7 @@ export default function ColumnGroupingTable(props) {
         createData(
           element.VisitorId.firstName,
           element.VisitorId.email,
-          element.VisitorId.firstName
+          element.Timeslot
         )
       );
     });

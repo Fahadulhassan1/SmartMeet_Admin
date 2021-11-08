@@ -7,6 +7,8 @@ import Page from "./pages/index (1)";
 import VisitorDetail from "./pages/visitor_detail";
 import Watchlist from "./pages/watchlist";
 import Routes from "./routes/routes";
+import Search from "./components/searchBar/SearchBar"
+import EmailForChangePassword from "./components/UserCredentials/emailforChangePassword";
 
 function App() {
   return (

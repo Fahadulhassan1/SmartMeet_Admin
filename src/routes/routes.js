@@ -14,6 +14,7 @@ import VisitorDetail from "../pages/visitor_detail";
 import WatchList from "../pages/watchlist";
 import EmployeeDetail from "../pages/employeeDetail";
 import SignIn from "../pages/signin";
+import EmailForChangePassword from "../components/UserCredentials/emailforChangePassword";
 // import Logs from "../pages/logspage";
 // import TP from "../pages/templatepage";
 // import UF from "../pages/uploadfilepage";
@@ -52,9 +53,12 @@ export default function Routes() {
         </Switch>
       ) : (
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <SignIn />
-          </Route>
+            </Route>
+            <Route exact path = "/changePassword">
+              <EmailForChangePassword />
+            </Route>
         </Switch>
       )}
     </Router>
