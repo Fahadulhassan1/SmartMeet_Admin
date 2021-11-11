@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 //import DoneSharpIcon from "@mui/icons-material/DoneSharp";
 //import ClearSharpIcon from "@mui/icons-material/ClearSharp";
 import axios from "axios";
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
   },
   uppercardtypography: {
-    color: "#00b59c",
+    color: "#808080	",
     fontWeight: "bold",
   },
   bottomCard: {
@@ -82,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
 export default function UsersCard() {
   const classes = useStyles();
   const [data, setdata] = React.useState(null);
+  const [search, setsearch] = React.useState("");
 
   React.useEffect(() => {
     axios
@@ -96,6 +99,30 @@ export default function UsersCard() {
 
   return (
     <Grid container>
+      <Grid item xs={11}>
+        <Grid container direction="row" justifyContent="center">
+          <Stack
+            spacing={2}
+            sx={{ width: 600 }}
+            style={{ borderRadius: "10px 10px 0px 0px" }}
+          >
+            <TextField
+              style={{
+                boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
+              }}
+              label="Serach"
+              onChange={(e) => setsearch(e.target.value)}
+            />
+          </Stack>
+        </Grid>
+        <Grid container direction="row-reverse">
+          <Card className={classes.upperCard}>
+            <Typography variant="h5" className={classes.uppercardtypography}>
+              Watch Listed Visitors
+            </Typography>
+          </Card>
+        </Grid>
+      </Grid>
       <Grid item xs={11} style={{ margin: "auto" }}>
         <Card className={classes.bottomCard}>
           <Grid container className={classes.rowheader} sx={{ m: "auto" }}>
@@ -152,20 +179,41 @@ export default function UsersCard() {
           <Card className={classes.listCard}>
             {data ? (
               data.map((item) => {
-                return (
-                  <div>
-                    <RowBody
-                      name={item.firstName + " " + item.lastName}
-                      avatar={item.avatar}
-                      email={item.email}
-                      username={item.username}
-                      dateOfBirth={item.dateOfBirth}
-                      id={item._id}
-                      setdata={setdata}
-                    />
-                    <Divider />
-                  </div>
-                );
+                if (search.length > 0) {
+                  if (
+                    item.firstName.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return (
+                      <div>
+                        <RowBody
+                          name={item.firstName + " " + item.lastName}
+                          avatar={item.avatar}
+                          email={item.email}
+                          username={item.username}
+                          dateOfBirth={item.dateOfBirth}
+                          id={item._id}
+                          setdata={setdata}
+                        />
+                        <Divider />
+                      </div>
+                    );
+                  }
+                } else {
+                  return (
+                    <div>
+                      <RowBody
+                        name={item.firstName + " " + item.lastName}
+                        avatar={item.avatar}
+                        email={item.email}
+                        username={item.username}
+                        dateOfBirth={item.dateOfBirth}
+                        id={item._id}
+                        setdata={setdata}
+                      />
+                      <Divider />
+                    </div>
+                  );
+                }
               })
             ) : (
               <div></div>
@@ -187,6 +235,7 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
           email
       )
       .then((res) => {
+        alert(name + " removed from watchlist ");
         setdata(null);
       });
     };
@@ -198,11 +247,13 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
           id
       )
       .then((res) => {
+        alert(name + "`s account deleted ");
         setdata(null);
       });
   };
 
   return (
+    
     <Grid container className={classes.rowbody} style={{ margin: "auto" }}>
       <Grid item sm={2} xs={2} md={4} lg={1} style={{ margin: "auto" }}>
         <Avatar alt="Remy Sharp" src={avatar} />

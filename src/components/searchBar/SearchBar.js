@@ -10,9 +10,11 @@ export default function FreeSolo(data) {
         id="free-solo-demo"
         freeSolo
         options={top100Films.map((option) => option.title)}
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="flex-start"
         renderInput={(params) => <TextField {...params} label="freeSolo" />}
       />
-      
     </Stack>
   );
 }

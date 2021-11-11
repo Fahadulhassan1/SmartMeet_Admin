@@ -10,8 +10,10 @@ import Routes from "./routes/routes";
 import Search from "./components/searchBar/SearchBar"
 import EmailForChangePassword from "./components/UserCredentials/emailforChangePassword";
 import NewEmailPass from "./components/UserCredentials/NewEmailPass";
+import Index from "./components/index"
 
 import Chat from "./components/UserCredentials/chat"
+import NewAdmin from "./components/newAdmin/newadmin"
 
 function App() {
   return (

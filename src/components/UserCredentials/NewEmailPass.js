@@ -92,6 +92,7 @@ function NewEmailPass(props) {
           </Typography>
           <form className="form" onSubmit={handleSubmit}>
             <TextField
+              autoComplete="off"
               variant="outlined"
               margin="normal"
               required
@@ -124,7 +125,6 @@ function NewEmailPass(props) {
               disabled={isLoading}
             >
               {isLoading ? "Loading..." : "Reset Password"}
-             
             </Button>
           </form>
           <Box mt={5}>

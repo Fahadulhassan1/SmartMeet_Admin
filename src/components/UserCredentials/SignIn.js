@@ -41,7 +41,10 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+const [isLoading, setIsLoading] = React.useState(false);
+
   const handleSubmit = () => {
+    setIsLoading(true);
     //eslint-disable-next-line no-console
     const data = new FormData();
     data.append("email", state.email);
@@ -53,9 +56,11 @@ export default function SignIn() {
         console.log(response);
 
         if (response.data.success) {
+          setIsLoading(false);
           dispatch(login());
         } else {
           alert("Login failed");
+          setIsLoading(false);
         }
       });
   };
@@ -117,8 +122,10 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
+              disabled={isLoading}
             >
-              Sign In
+              {isLoading ? "Signing..." : "Sign In"}
+              
             </Button>
             <Grid container>
               <Grid item xs>

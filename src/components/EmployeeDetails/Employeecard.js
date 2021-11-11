@@ -4,12 +4,15 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 
 import axios from "axios";
+import Search from "../searchBar/SearchBar";
 const useStyles = makeStyles((theme) => ({
   upperCard: {
     padding: 10,
@@ -18,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
   },
   uppercardtypography: {
-    color: "#00b59c",
+    color: "#808080	",
     fontWeight: "bold",
   },
   bottomCard: {
@@ -81,18 +84,45 @@ const useStyles = makeStyles((theme) => ({
 export default function UsersCard() {
   const classes = useStyles();
   const [data, setdata] = React.useState(null);
-
+  const [search, setsearch] = React.useState("");
+  console.log(search);
   React.useEffect(() => {
     axios
       .get("https://pure-woodland-42301.herokuapp.com/api/employee/allUsers")
       .then((response) => {
-       // console.log(response);
+        // console.log(response);
         setdata(response.data);
       });
   }, [data]);
 
   return (
     <Grid container>
+      <Grid container xs={11}>
+        <Grid container direction="row" justifyContent="center">
+          <Stack
+            spacing={2}
+            sx={{ width: 600 }}
+            style={{ borderRadius: "10px 10px 0px 0px" }}
+          >
+            <TextField
+              style={{
+                boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
+              }}
+              label="Serach"
+              onChange={(e) => setsearch(e.target.value)}
+            />
+          </Stack>
+        </Grid>
+        <Grid container direction = "row-reverse">
+         
+            <Card className={classes.upperCard}>
+              <Typography variant="h5" className={classes.uppercardtypography}>
+                View Employees Details
+              </Typography>
+            </Card>
+        
+        </Grid>
+      </Grid>
       <Grid item xs={11} style={{ margin: "auto" }}>
         <Card className={classes.bottomCard}>
           <Grid container className={classes.rowheader} sx={{ m: "auto" }}>
@@ -149,20 +179,41 @@ export default function UsersCard() {
           <Card className={classes.listCard}>
             {data ? (
               data.map((item) => {
-                return (
-                  <div>
-                    <RowBody
-                      name={item.firstName + " " + item.lastName}
-                      avatar={item.avatar}
-                      email={item.email}
-                      username={item.username}
-                            dateOfBirth={item.dateOfBirth}
-                            id = {item._id}
-                      setdata={setdata}
-                    />
-                    <Divider />
-                  </div>
-                );
+                if (search.length > 0) {
+                  if (
+                    item.firstName.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return (
+                      <div>
+                        <RowBody
+                          name={item.firstName + " " + item.lastName}
+                          avatar={item.avatar}
+                          email={item.email}
+                          username={item.username}
+                          dateOfBirth={item.dateOfBirth}
+                          id={item._id}
+                          setdata={setdata}
+                        />
+                        <Divider />
+                      </div>
+                    );
+                  }
+                } else {
+                  return (
+                    <div>
+                      <RowBody
+                        name={item.firstName + " " + item.lastName}
+                        avatar={item.avatar}
+                        email={item.email}
+                        username={item.username}
+                        dateOfBirth={item.dateOfBirth}
+                        id={item._id}
+                        setdata={setdata}
+                      />
+                      <Divider />
+                    </div>
+                  );
+                }
               })
             ) : (
               <div></div>
@@ -174,11 +225,9 @@ export default function UsersCard() {
   );
 }
 
-function RowBody({ avatar, name, email, username, dateOfBirth, id , setdata }) {
+function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
   const classes = useStyles();
- 
 
-  
   const deleteEmployee = () => {
     axios
       .delete(
