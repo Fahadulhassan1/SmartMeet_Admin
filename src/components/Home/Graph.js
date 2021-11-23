@@ -2,6 +2,8 @@ import * as React from "react";
 import { Bar } from "react-chartjs-2";
 import Box from "@mui/material/Box";
 //import Grid from "@mui/material/Grid";
+import axios
+  from "axios";
 import Card from "@mui/material/Card";
 //import CardActionArea from "@mui/material/CardActionArea";
 //import CardMedia from "@mui/material/CardMedia";
@@ -9,37 +11,76 @@ import CardContent from "@mui/material/CardContent";
 //import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { Button, Divider, CardHeader, useTheme, colors } from "@mui/material";
 
 function Graph(props) {
   const theme = useTheme();
-
-  const data = {
-    datasets: [
-      {
-        backgroundColor: colors.indigo[500],
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: "This month",
-        maxBarThickness: 10,
-      },
-      {
-        backgroundColor: colors.grey[200],
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: "Last month",
-        maxBarThickness: 10,
-      },
-    ],
-    labels: ["1 Aug", "2 Aug", "3 Aug", "4 Aug", "5 Aug", "6 Aug "],
-  };
+var days; // Days you want to subtract
+var date = new Date();
+var last = new Date(date.getTime() - days * 24 * 60 * 60 * 1000);
+var day = last.getDate();
+var month = last.getMonth() + 1;
+  var year = last.getFullYear();
+  const [dates, setData] = React.useState("");
+  
+  React.useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/admin/lastSevenDaysAppointments")
+      .then((response) => {
+        
+        setData(response.data);
+      });
+  }, [dates]);
+  console.log(dates)
+  
+    var thisWeek = [];
+  var lastWeek = [];
+  var thisweekdate = [];
+  var lastweekdate = []
+  if (dates) {
+    for (var i = 0; i < 7; i++) {
+      thisWeek.push(dates.thisweek[i].length);
+      thisweekdate.push(dates.thisweek[i].today);
+      lastWeek.push(dates.lastweek[i].length);
+      lastweekdate.push(dates.lastweek[i].today30);
+    }
+  
+  }
+    console.log(thisweekdate);
+    console.log(lastWeek);
+  
+    
+        const data = {
+          datasets: [
+            {
+              backgroundColor: colors.indigo[500],
+              barPercentage: 0.5,
+              barThickness: 12,
+              borderRadius: 4,
+              categoryPercentage: 0.5,
+              data: dates ? thisWeek : [1, 1, 1, 1, 1, 1, 1],
+              label: "This week",
+              maxBarThickness: 10,
+            },
+            {
+              backgroundColor: colors.grey[200],
+              barPercentage: 0.5,
+              barThickness: 12,
+              borderRadius: 4,
+              categoryPercentage: 0.5,
+              data: dates ? lastWeek : [1, 1, 1, 1, 1, 1, 1],
+              label: "Last week",
+              maxBarThickness: 10,
+            },
+          ],
+          labels: dates
+            ? thisweekdate
+            : [
+                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",]
+              ,
+        };
 
   const options = {
     animation: false,
@@ -96,7 +137,7 @@ function Graph(props) {
     <Card {...props}>
       <CardHeader
         action={
-          <Button endIcon={<ArrowDropDownIcon />} size="small" variant="text">
+          <Button  size="small" variant="text">
             Last 7 days
           </Button>
         }
