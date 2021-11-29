@@ -16,6 +16,7 @@ import EmployeeDetail from "../pages/employeeDetail";
 import SignIn from "../pages/signin";
 import EmailForChangePassword from "../components/UserCredentials/emailforChangePassword";
 import NewEmailPass from "../components/UserCredentials/NewEmailPass";
+import Reports from "../pages/reports"
 // import Logs from "../pages/logspage";
 // import TP from "../pages/templatepage";
 // import UF from "../pages/uploadfilepage";
@@ -50,6 +51,9 @@ export default function Routes() {
           </Route>
           <Route exact path="/employee_detail">
             <EmployeeDetail />
+          </Route>
+          <Route exact path="/reports">
+          <Reports/>
           </Route>
         </Switch>
       ) : (

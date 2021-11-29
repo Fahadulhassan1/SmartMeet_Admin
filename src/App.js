@@ -1,24 +1,17 @@
-import Home from "./components/HomeScreen";
-import HomePage from "./pages/index";
-import EmployeeApproval from "./pages/employee_approval";
-import EmployeeDetail from "./pages/employeeDetail";
-import Sign_In from "./pages/signin";
-import Page from "./pages/index (1)";
-import VisitorDetail from "./pages/visitor_detail";
-import Watchlist from "./pages/watchlist";
+
 import Routes from "./routes/routes";
-import Search from "./components/searchBar/SearchBar"
-import EmailForChangePassword from "./components/UserCredentials/emailforChangePassword";
-import NewEmailPass from "./components/UserCredentials/NewEmailPass";
-import Index from "./components/index"
-
-import Chat from "./components/UserCredentials/chat"
-import NewAdmin from "./components/newAdmin/newadmin"
-
+import Drawer from "./components/Drawer"
+import Reports from "./pages/reports"
+import Grid from "@material-ui/core/Grid";
 function App() {
   return (
     <div className="App">
-      <Routes />
+      <Grid container>
+        
+        <Grid item xs={12}>
+          <Routes />
+        </Grid>
+      </Grid>
     </div>
   );
 }

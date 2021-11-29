@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 //import image from "../../images/fahad.jpg";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
@@ -254,7 +254,6 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isW
 
   return (
     <Grid container className={classes.rowbody} style={{ margin: "auto" }}>
-      
       <Grid item sm={2} xs={2} md={4} lg={1} style={{ margin: "auto" }}>
         <Avatar alt="Remy Sharp" src={avatar} />
       </Grid>
@@ -284,6 +283,15 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isW
             <Button
               variant="container"
               className={classes.btmbtnred}
+              style={{
+                color: "#fff",
+                background: "#e85e5e",
+                fontWeight: "bold",
+                borderRadius: " 10px 0px 0px 10px",
+                "&:hover": {
+                  background: "#ee8b8b",
+                },
+              }}
               fullWidth
               onClick={deleteEmployee}
             >
@@ -295,6 +303,15 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isW
               <Button
                 variant="container"
                 className={classes.btmbtnorange}
+                style={{
+                  color: "#fff",
+                  background: "orange",
+                  fontWeight: "bold",
+                  borderRadius: "0px 10px 10px 0px",
+                  "&:hover": {
+                    background: "#fed8b1",
+                  },
+                }}
                 fullWidth
               >
                 <Typography variant="body">Watch Listed</Typography>
@@ -303,6 +320,15 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata , isW
               <Button
                 variant="container"
                 className={classes.btmbtnorange}
+                style={{
+                  color: "#fff",
+                  background: "orange",
+                  fontWeight: "bold",
+                  borderRadius: "0px 10px 10px 0px",
+                  "&:hover": {
+                    background: "#fed8b1",
+                  },
+                }}
                 fullWidth
                 onClick={addToWatchList}
               >

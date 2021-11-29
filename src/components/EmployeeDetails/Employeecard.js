@@ -270,6 +270,15 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
             <Button
               variant="container"
               className={classes.btmbtnred}
+              style={{
+                color: "#fff",
+                background: "#e85e5e",
+                fontWeight: "bold",
+                borderRadius: " 10px 10px 10px 10px",
+                "&:hover": {
+                  background: "#ee8b8b",
+                },
+              }}
               fullWidth
               onClick={deleteEmployee}
             >

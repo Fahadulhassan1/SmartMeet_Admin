@@ -17,7 +17,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import WarningIcon from "@mui/icons-material/Warning";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
+
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -109,111 +109,116 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Grid item>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: "36px",
-              ...(open && { display: "none" }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Smart Meet
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem button key={1} onClick={() => history.push("/")}>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
+    <Grid container>
+      <Grid item xs = {12}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: "36px",
+                ...(open && { display: "none" }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Smart Meet
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            <ListItem button key= "dashboard" onClick={() => history.push("/")}>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
 
-            <ListItemText primary={"Dashboard"} />
-          </ListItem>
-          <ListItem
-            button
-            key={1}
-            onClick={() => history.push("/employees_approval")}
-          >
-            <ListItemIcon>
-              <AccountCircleIcon />
-            </ListItemIcon>
+              <ListItemText primary={"Dashboard"} />
+            </ListItem>
+            <ListItem
+              button
+              key={1}
+              onClick={() => history.push("/employees_approval")}
+            >
+              <ListItemIcon>
+                <AccountCircleIcon />
+              </ListItemIcon>
 
-            <ListItemText primary={"Employeee Approval"} />
-          </ListItem>
+              <ListItemText primary={"Employeee Approval"} />
+            </ListItem>
 
-          <ListItem button key={1} onClick={() => history.push("/watchlist")}>
-            <ListItemIcon>
-              <WarningIcon />
-            </ListItemIcon>
+            <ListItem button key={2} onClick={() => history.push("/watchlist")}>
+              <ListItemIcon>
+                <WarningIcon />
+              </ListItemIcon>
 
-            <ListItemText primary={"Watchlist"} />
-          </ListItem>
-          <ListItem
-            button
-            key={1}
-            onClick={() => history.push("/employee_detail")}
-          >
-            <ListItemIcon>
-              <PersonPinCircleRoundedIcon />
-            </ListItemIcon>
+              <ListItemText primary={"Watchlist"} />
+            </ListItem>
+            <ListItem
+              button
+              key={3}
+              onClick={() => history.push("/employee_detail")}
+            >
+              <ListItemIcon>
+                <PersonPinCircleRoundedIcon />
+              </ListItemIcon>
 
-            <ListItemText primary={"Employees"} />
-          </ListItem>
-          <ListItem
-            button
-            key={1}
-            onClick={() => history.push("/visitors_detail")}
-          >
-            <ListItemIcon>
-              <PersonSharpIcon />
-            </ListItemIcon>
+              <ListItemText primary={"Employees"} />
+            </ListItem>
+            <ListItem
+              button
+              key={4}
+              onClick={() => history.push("/visitors_detail")}
+            >
+              <ListItemIcon>
+                <PersonSharpIcon />
+              </ListItemIcon>
 
-            <ListItemText primary={"Visitors"} />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button key={1} onClick={() => history.push("/Reports")}>
-            <ListItemIcon>
-              <AssessmentIcon />
-            </ListItemIcon>
+              <ListItemText primary={"Visitors"} />
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button key={5} onClick={() => history.push("/reports")}>
+              <ListItemIcon>
+                <AssessmentIcon />
+              </ListItemIcon>
 
-            <ListItemText primary={"History"} />
-          </ListItem>
-          <ListItem button key={1} onClick={() => history.push("/Settings")}>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Settings"} />
-          </ListItem>
-          <ListItem button key={1} onClick={() => dispatch(logout())}>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Logout"} />
-          </ListItem>
-        </List>
-      </Drawer>
+              <ListItemText primary={"Reports"} />
+            </ListItem>
+            <ListItem button key={6} onClick={() => history.push("/Settings")}>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Settings"} />
+            </ListItem>
+            <ListItem button key={7} onClick={() => {
+              dispatch(logout())
+              history.push("/")
+            }}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Logout"} />
+            </ListItem>
+          </List>
+        </Drawer>
+      </Grid>
     </Grid>
   );
 }

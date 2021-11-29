@@ -253,7 +253,6 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
   };
 
   return (
-    
     <Grid container className={classes.rowbody} style={{ margin: "auto" }}>
       <Grid item sm={2} xs={2} md={4} lg={1} style={{ margin: "auto" }}>
         <Avatar alt="Remy Sharp" src={avatar} />
@@ -284,6 +283,15 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
             <Button
               variant="container"
               className={classes.btmbtnred}
+              style={{
+                color: "#fff",
+                background: "#e85e5e",
+                fontWeight: "bold",
+                borderRadius: " 10px 0px 0px 10px",
+                "&:hover": {
+                  background: "#ee8b8b",
+                },
+              }}
               fullWidth
               onClick={deleteEmployee}
             >
@@ -294,6 +302,15 @@ function RowBody({ avatar, name, email, username, dateOfBirth, id, setdata }) {
             <Button
               variant="container"
               className={classes.btmbtngreen}
+              style={{
+                color: "#fff",
+                background: "#2fc452",
+                fontWeight: "bold",
+                borderRadius: "0px 10px 10px 0px",
+                "&:hover": {
+                  background: "#6DD585",
+                },
+              }}
               fullWidth
               onClick={removeFromWatchlist}
             >

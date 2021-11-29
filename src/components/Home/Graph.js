@@ -32,7 +32,7 @@ var month = last.getMonth() + 1;
         
         setData(response.data);
       });
-  }, [dates]);
+  }, []);
   console.log(dates)
   
     var thisWeek = [];

@@ -119,7 +119,7 @@ export default function UsersCard() {
         <Grid container direction="row-reverse">
           <Card className={classes.upperCard}>
             <Typography variant="h5" className={classes.uppercardtypography}>
-              Employees Requests for verification
+              Employees Verification Request
             </Typography>
           </Card>
         </Grid>
@@ -328,10 +328,22 @@ function RowBody({ avatar, name, email, phoneNumber ,username,setdata }) {
             <Button
               variant="container"
               className={classes.btmbtngreen}
+              style={{
+                color: "#fff",
+                background: "#2fc452",
+                fontWeight: "bold",
+                borderRadius: "10px 0px 0px 10px",
+                "&:hover": {
+                  background: "#6DD585",
+                },
+              }}
               fullWidth
               onClick={accept}
             >
-              <Typography variant="body1" style = {{alignItems: 'center' , justifyContent: 'center'}}>
+              <Typography
+                variant="body1"
+                style={{ alignItems: "center", justifyContent: "center" }}
+              >
                 <DoneSharpIcon />
               </Typography>
             </Button>
@@ -340,6 +352,15 @@ function RowBody({ avatar, name, email, phoneNumber ,username,setdata }) {
             <Button
               variant="container"
               className={classes.btmbtnred}
+              style={{
+                color: "#fff",
+                background: "#e85e5e",
+                fontWeight: "bold",
+                borderRadius: " 0px 10px 10px 0px",
+                "&:hover": {
+                  background: "#ee8b8b",
+                },
+              }}
               fullWidth
               onClick={reject}
             >
