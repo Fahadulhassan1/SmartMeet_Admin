@@ -40,8 +40,9 @@
     "eject": "react-scripts eject"
   },
   "engines": {
+    "npm": "7.21.1",
     "node": "16.4.1",
-    "npm": "7.21.1"
+    
   },
   "eslintConfig": {
     "extends": [
