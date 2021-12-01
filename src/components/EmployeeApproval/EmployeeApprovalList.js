@@ -280,7 +280,16 @@ function RowBody({ avatar, name, email, phoneNumber ,username,setdata }) {
         </Typography>
       </Grid>
       <Grid item sm={3} xs={3} md={4} lg={2}>
-        <Button className={classes.viewbtn} onClick={handleOpen}>
+        <Button
+          className={classes.viewbtn}
+          style={{
+            backgroundColor: "blue",
+            "&:hover": {
+              background: "#6666FF",
+            },
+          }}
+          onClick={handleOpen}
+        >
           <Typography style={{ color: "white" }}>View</Typography>
         </Button>
         <Modal
