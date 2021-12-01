@@ -1,4 +1,5 @@
 // import "./styles.css";
+import Grid from "@mui/material/Grid"
 import React from "react";
 import {
   LineChart,
@@ -59,32 +60,36 @@ const data = [
 
 export default function App() {
   return (
-    <ResponsiveContainer width="102.5%" height={400}>
-      <LineChart
-        width={600}
-        height={300}
-        data={data}
-        style={{ border: "1px solid black" }}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="Users"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-      </LineChart>
-    </ResponsiveContainer>
+    <Grid container>
+      <Grid item xs = {11}>
+        <ResponsiveContainer  height={400}>
+          <LineChart
+            width={600}
+            height={300}
+            data={data}
+            style={{ border: "1px solid black" }}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="Users"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+          </LineChart>
+        </ResponsiveContainer>
+      </Grid>
+    </Grid>
   );
 }

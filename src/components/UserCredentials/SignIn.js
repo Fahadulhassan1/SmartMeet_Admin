@@ -59,7 +59,7 @@ const [isLoading, setIsLoading] = React.useState(false);
           setIsLoading(false);
           dispatch(login());
         } else {
-          alert("Login failed");
+          alert("Wrong email or Password");
           setIsLoading(false);
         }
       });
@@ -136,7 +136,7 @@ const [isLoading, setIsLoading] = React.useState(false);
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

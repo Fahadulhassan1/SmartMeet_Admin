@@ -3,13 +3,9 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 //import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
 import Drawer from "../components/Drawer";
-import RightBottomUserManagement from "../components/report/RightBottomUserManagement";
-import Chart from "../components/report/chart";
-
-import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
-import LowerCards from "../components/LowerCards";
-
-function Reports() {
+import { SettingsVoiceOutlined } from "@material-ui/icons";
+import ChangePassword from "../components/Settings/ChangePassword2"
+function Settings() {
   return (
     <>
       <Grid container>
@@ -18,10 +14,10 @@ function Reports() {
         </Grid>
 
         <Grid item xs={11} style={{ marginTop: 70 }}>
-          <RightBottomUserManagement />
+          <ChangePassword/>
         </Grid>
       </Grid>
     </>
   );
 }
-export default Reports;
+export default Settings;

@@ -17,6 +17,7 @@ import SignIn from "../pages/signin";
 import EmailForChangePassword from "../components/UserCredentials/emailforChangePassword";
 import NewEmailPass from "../components/UserCredentials/NewEmailPass";
 import Reports from "../pages/reports"
+import Settings from "../pages/settings";
 // import Logs from "../pages/logspage";
 // import TP from "../pages/templatepage";
 // import UF from "../pages/uploadfilepage";
@@ -53,7 +54,10 @@ export default function Routes() {
             <EmployeeDetail />
           </Route>
           <Route exact path="/reports">
-          <Reports/>
+            <Reports />
+          </Route>
+          <Route exact path="/settings">
+            <Settings />
           </Route>
         </Switch>
       ) : (
