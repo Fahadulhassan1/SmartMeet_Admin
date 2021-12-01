@@ -32,7 +32,7 @@ export const SettingsPassword = (props) => {
      console.log(success);
 
      const response = await axios.put(
-       "http://localhost:3001/api/admin/changePassword",
+       "https://pure-woodland-42301.herokuapp.com/api/admin/changePassword",
        {
          email,
          currentPassword,
