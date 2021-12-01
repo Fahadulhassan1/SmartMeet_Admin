@@ -27,9 +27,10 @@ var month = last.getMonth() + 1;
   
   React.useEffect(() => {
     axios
-      .get("http://localhost:3001/api/admin/lastSevenDaysAppointments")
+      .get(
+        "https://pure-woodland-42301.herokuapp.com/api/admin/lastSevenDaysAppointments"
+      )
       .then((response) => {
-        
         setData(response.data);
       });
   }, []);
