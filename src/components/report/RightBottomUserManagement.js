@@ -34,7 +34,7 @@ const RightBottomUserManagement = () => {
       .then((res) => {
         setdata(res.data);
       });
-  }, [data]);
+  }, []);
 
   const rows= [];
   var i = 1;
