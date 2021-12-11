@@ -8,7 +8,7 @@ import Card from "@mui/material/Card";
 //import CardActionArea from "@mui/material/CardActionArea";
 //import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-//import Typography from "@mui/material/Typography";
+import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -138,8 +138,8 @@ var month = last.getMonth() + 1;
     <Card {...props}>
       <CardHeader
         action={
-          <Button  size="small" variant="text">
-            Last 7 days
+          <Button size="small" variant="text">
+            Last 14 days
           </Button>
         }
         title="Appointments"
@@ -163,14 +163,22 @@ var month = last.getMonth() + 1;
           p: 2,
         }}
       >
-        <Button
+        {/* <Button
           color="primary"
-          endIcon={<ArrowRightIcon />}
+          // endIcon={<ArrowRightIcon />}
           size="small"
           variant="text"
+          disabled
         >
           Overview
-        </Button>
+        </Button> */}
+        <Typography
+          color="primary"
+          // endIcon={<ArrowRightIcon />}
+          size="small"
+        >
+          Overview
+        </Typography>
       </Box>
     </Card>
   );

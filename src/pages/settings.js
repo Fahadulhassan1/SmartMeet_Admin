@@ -4,17 +4,20 @@ import Grid from "@mui/material/Grid";
 //import UsersCard from "../components/EmployeeApproval/EmployeeApprovalList";
 import Drawer from "../components/Drawer";
 import { SettingsVoiceOutlined } from "@material-ui/icons";
-import ChangePassword from "../components/Settings/ChangePassword2"
+import ChangePassword from "../components/Settings/ChangePassword2";
+import Alert from "../components/Settings/alertToAll";
 function Settings() {
   return (
     <>
       <Grid container>
-        <Grid item xs={1}>
+        <Grid item xs={1} lg={1}>
           <Drawer />
         </Grid>
-
-        <Grid item xs={11} style={{ marginTop: 70 }}>
-          <ChangePassword/>
+        <Grid item lg= {4} xs={10} style={{ marginTop: 100 }}>
+          <Alert />
+        </Grid>
+        <Grid item lg={ 7}xs={10} style={{ marginTop: 70 }}>
+          <ChangePassword />
         </Grid>
       </Grid>
     </>
