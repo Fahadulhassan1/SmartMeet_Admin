@@ -29,7 +29,7 @@ function AlertToAll() {
   const [success, setSuccess] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   function handleClick(event) {
-    event.preventDefault();
+    // event.preventDefault();
     setIsLoading(true);
     
     
@@ -38,8 +38,9 @@ function AlertToAll() {
       .get("https://pure-woodland-42301.herokuapp.com/api/admin/alertToAll")
 
       .then(function (response) {
+        
         alert(
-          "Alert to all people in building to leave the building sent successfully. "
+        "Alert to all people in building to leave the building immediately."  
         );
         setIsLoading(false);
       });
