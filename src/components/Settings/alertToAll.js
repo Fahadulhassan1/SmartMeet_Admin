@@ -51,7 +51,7 @@ function AlertToAll() {
         <Grid item xs={12}>
           <Card
             style={{
-              padding: 20,
+              padding: 61,
               alignItem: "center",
               justifyContent: "center",
             }}
