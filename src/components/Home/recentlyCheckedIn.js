@@ -53,8 +53,8 @@ export default function ColumnGroupingTable(props) {
       row.push(
         createData(
           element.VisitorId.firstName,
-          element.VisitorId.email,
-          element.VisitorId.firstName
+          element.employeeId.department,
+          element.Timeslot
         )
       );
     });
