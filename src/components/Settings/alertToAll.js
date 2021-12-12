@@ -56,7 +56,7 @@ function AlertToAll() {
               justifyContent: "center",
             }}
           >
-            <Grid item xs={12} style = {{marginTop : 10, marginBottom : 100}}>
+            <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
               <Typography variant="h5" component="h2">
                 Warn all people in building to leave the building immediately.
               </Typography>
@@ -64,10 +64,19 @@ function AlertToAll() {
             <Grid
               item
               xs={12}
-              style={{ alignItem: "center", justifyContent: "center" , display: "flex"}}
+              style={{
+                alignItem: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
             >
-              <Button variant="contained" color="primary" onClick={handleClick} disabled = {isLoading}>
-               {isLoading ? "Sending Alert" : "Alert To All"}
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleClick}
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending Alert" : "Alert To All"}
               </Button>
             </Grid>
           </Card>

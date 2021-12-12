@@ -64,7 +64,7 @@ export const SettingsPassword = (props) => {
     return (
       <Grid container sx={{ justifyContent: "center" }}>
         <Grid item xs={5} style={{ marginTop: 10 }}>
-          <form onSubmit={handleSubmit}  name = "form">
+          <form onSubmit={handleSubmit} name="form">
             <Card>
               <CardHeader subheader="Update password" title="Password" />
               <Divider />
@@ -111,7 +111,7 @@ export const SettingsPassword = (props) => {
               >
                 <Button
                   type="submit"
-                  color="primary"
+                  color="secondary"
                   variant="contained"
                   disabled={isLoading}
                 >
