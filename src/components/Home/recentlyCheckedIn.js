@@ -46,9 +46,15 @@ export default function ColumnGroupingTable(props) {
  
 // console.log(recentCheckedIn.length);
   var row = [];
-  if (recentCheckedIn == null || recentCheckedIn == undefined) {
-    row = rows;
-  } else {
+  if (recentCheckedIn == null || recentCheckedIn == undefined ) {
+    row = [createData("", "Loading", "")];
+  }
+  if (recentCheckedIn.length == 0) {
+    
+      row = [createData("", "No recently chceckedIn", "")]
+    
+  }
+  else {
     recentCheckedIn.map((element) => {
       row.push(
         createData(

@@ -26,7 +26,7 @@ function LowerCards() {
         setRecentCheckIn(response.data);
       });
   }, [recentCheckedIn]);
-  console.log("recent ch" + recentCheckedIn);
+  // console.log("recent ch" + recentCheckedIn);
   React.useEffect(async() => {
     await axios
       .get(
