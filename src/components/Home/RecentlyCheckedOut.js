@@ -48,7 +48,11 @@ export default function ColumnGroupingTable(props) {
   var row = [];
   if (recentCheckedOut == null || recentCheckedOut == undefined) {
     row = rows;
-  } else {
+  } if (recentCheckedOut.length == 0) {
+    row = [createData("", "No recently chcecked Out", "")];
+  }
+    
+  else {
     recentCheckedOut.map((element) => {
       row.push(
         createData(

@@ -12,7 +12,8 @@ import OutboundTwoToneIcon from "@mui/icons-material/OutboundTwoTone";
 import ScheduleTwoToneIcon from "@mui/icons-material/ScheduleTwoTone";
 function HomeScreen() {
   const [scheduledVisitorsdata, setSceduledvisitors] = React.useState("0");
-   const [checkedIn_Visitors , setCheckedIn_Visitors] = React.useState("0");
+  const [checkedIn_Visitors, setCheckedIn_Visitors] = React.useState("0");
+  const [checkedOut_Visitors, setCheckedOut_Visitors] = React.useState("0");
 
   React.useEffect(() => {
     axios
@@ -34,6 +35,17 @@ function HomeScreen() {
         setCheckedIn_Visitors(response.data);
       });
   }, [checkedIn_Visitors]);
+
+  React.useEffect(() => {
+    axios
+      .get(
+        "https://pure-woodland-42301.herokuapp.com/api/admin/last_TwentyfourHoursCheckedOutAppointmentscounting"
+      )
+      .then((response) => {
+        //console.log(response);
+        setCheckedOut_Visitors(response.data);
+      });
+  }, [checkedOut_Visitors]);
   return (
     <>
       <Grid container>
@@ -51,7 +63,9 @@ function HomeScreen() {
               <OutboundTwoToneIcon fontSize="large" sx={{ color: red[500] }} />
             }
             checkedIn_Visitors="Checked-Out Visitors"
-            numberOfVisitors={47}
+            numberOfVisitors={
+              checkedOut_Visitors == 0 ? 0 : checkedOut_Visitors
+            }
             color="blue"
           />
         </Grid>

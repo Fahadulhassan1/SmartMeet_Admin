@@ -30,7 +30,7 @@ function LowerCards() {
   React.useEffect(async() => {
     await axios
       .get(
-        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
+        "https://pure-woodland-42301.herokuapp.com/api/admin/twentyfourHoursCheckedOut"
       )
       .then((response) => {
         setRecentCheckOut(response.data);
