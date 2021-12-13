@@ -1,3 +1,5 @@
+import * as React from "react";
+import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import {
   Box,
@@ -10,16 +12,26 @@ import {
   useTheme,
 } from "@mui/material";
 
- import BusinessIcon from "@mui/icons-material/Business";
+import BusinessIcon from "@mui/icons-material/Business";
 
 const TrafficByDevice = (props) => {
+  const [Data, setData] = React.useState("");
+  React.useEffect(() => {
+    axios
+      .get("https://pure-woodland-42301.herokuapp.com/api/admin/circularGraph")
+      .then((res) => {
+        setData(res.data);
+      });
+  }, [Data]); 
+console.log(Data);
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: Data ? Data  : [63, 15, 22] ,
         backgroundColor: [
+          colors.green[600],
           colors.indigo[500],
           colors.red[600],
           colors.orange[600],
@@ -29,7 +41,7 @@ const TrafficByDevice = (props) => {
         hoverBorderColor: colors.common.white,
       },
     ],
-    labels: ["Finance", "Sales", "HR"],
+    labels: ["Employee","Finance", "Sales", "HR"],
   };
 
   const options = {
@@ -56,20 +68,26 @@ const TrafficByDevice = (props) => {
 
   const devices = [
     {
+      title: "Employee",
+      value: Data? Data[0] : 0,
+      icon: BusinessIcon,
+      color: colors.green[500],
+    },
+    {
       title: "Finance",
-      value: 63,
+      value: Data? Data[1] : 0,
       icon: BusinessIcon,
       color: colors.indigo[500],
     },
     {
       title: "Sales",
-      value: 15,
+      value: Data? Data[2] : 0,
       icon: BusinessIcon,
       color: colors.red[600],
     },
     {
       title: "HR",
-      value: 23,
+      value: Data? Data[3] : 0,
       icon: BusinessIcon,
       color: colors.orange[600],
     },
@@ -107,8 +125,8 @@ const TrafficByDevice = (props) => {
               <Typography color="textPrimary" variant="body1">
                 {title}
               </Typography>
-              <Typography style={{ color }} variant="h3">
-                {value}%
+              <Typography style={{ color }} variant="h4">
+                {value}
               </Typography>
             </Box>
           ))}
