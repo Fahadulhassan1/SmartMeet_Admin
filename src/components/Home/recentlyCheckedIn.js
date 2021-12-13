@@ -44,7 +44,7 @@ export default function ColumnGroupingTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
  
-
+// console.log(recentCheckedIn.length);
   var row = [];
   if (recentCheckedIn == null || recentCheckedIn == undefined) {
     row = rows;

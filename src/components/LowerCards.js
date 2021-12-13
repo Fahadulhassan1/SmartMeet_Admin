@@ -6,9 +6,9 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 function LowerCards() {
   const [data, setdata] = React.useState(null);
-  const [recentCheckedIn, setRecentCheckIn] = React.useState(null);
-   const [recentCheckedOut, setRecentCheckOut] = React.useState(null);
-   React.useEffect( () => {
+  const [recentCheckedIn, setRecentCheckIn] = React.useState("");
+  const [recentCheckedOut, setRecentCheckOut] = React.useState(null);
+  React.useEffect(() => {
     axios
       .get(
         "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
@@ -16,18 +16,19 @@ function LowerCards() {
       .then((response) => {
         setdata(response.data);
       });
-   }, [data]);
+  }, [data]);
   React.useEffect(() => {
     axios
       .get(
-        "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
+        "https://pure-woodland-42301.herokuapp.com/api/admin/checkedInAppointments"
       )
       .then((response) => {
         setRecentCheckIn(response.data);
       });
   }, [recentCheckedIn]);
-  React.useEffect(() => {
-    axios
+  console.log("recent ch" + recentCheckedIn);
+  React.useEffect(async() => {
+    await axios
       .get(
         "https://pure-woodland-42301.herokuapp.com/api/admin/nextDayAppointments"
       )
@@ -35,15 +36,6 @@ function LowerCards() {
         setRecentCheckOut(response.data);
       });
   }, [recentCheckedOut]);
-
-
-  
-  
-
-
- 
-
-  
 
   return (
     <>
